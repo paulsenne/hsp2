@@ -24,24 +24,25 @@ RUN pip install --no-cache jupyter
 
 ENV PATH ${PATH}:/home/${NB_USER}/.local/bin
 
+USER root
 # build jupyter config file and set an empy token
 RUN jupyter notebook --generate-config && echo "c.NotebookApp.token = ''" > /home/${NB_USER}/.jupyter/jupyter_notebook_config.py
 
-USER root
 # get HSP2 and build
 COPY . ${HOME}/HSPsquared
-#RUN cd ${HOME} \
+
 RUN cd ${HOME}/HSPsquared \
     && rm -r wdmtoolbox \
     && pip install --no-cache -r requirements.txt \
     && pip install --no-cache wdmtoolbox
 
 RUN chown -R ${NB_USER} ${HOME}
+
 USER ${NB_USER}
 # set python path to include hsp2 modules
 ENV PYTHONPATH ${HOME}/HSPsquared:${PYTHONPATH}
 
 WORKDIR ${HOME}
 
-ENTRYPOINT ["jupyter", "notebook", "--ip=0.0.0.0", "--port=8888", "--no-browser"]
+# ENTRYPOINT ["jupyter", "notebook", "--ip=0.0.0.0", "--port=8888", "--no-browser"]
 
