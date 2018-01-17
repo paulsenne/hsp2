@@ -1,18 +1,29 @@
 # Linux Installation Instructions
 
+1. Install System Requirements
+```sh
+# Install virtualenv if desired, create environment and activate it
+apt-get install python # 2 is required
+apt-get install python-dev
+apt-get install gfortran
+apt-get install virtualenv # optional
+```
 
-1. Clone Repo
+2. Clone Repo
 ```sh
 git clone https://github.com/respec/HSPsquared/
+cd HSPsquared
 ```
-2. Install python requirements
+
+3. Install python requirements
 ```sh
 # Remove included WDMtoolbox as it is not needed. Needed files are installed with pip
 rm - r wdmtoolbox
 
-# Install virtualenv if desired, create environment and activate it
-apt-get install virtualenv
+# Optionally create 
 virtualenv venv
+# optionally set this virtual environment to activate automatically when logging in
+echo "source $(pwd)/venv/bin/activate" >> ~/.bashrc
 source venv/bin/activate
 
 # Install requirements as included in the requirements.txt file 
