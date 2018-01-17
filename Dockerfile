@@ -42,7 +42,7 @@ USER ${NB_USER}
 # set python path to include hsp2 modules
 ENV PYTHONPATH ${HOME}/HSPsquared:${PYTHONPATH}
 
-WORKDIR ${HOME}/HSPsquared/HSP2notebooks
+WORKDIR ${HOME}/HSPsquared
 
 # ENTRYPOINT ["jupyter", "notebook", "--ip=0.0.0.0", "--port=8888", "--no-browser"]
 
