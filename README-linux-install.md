@@ -3,6 +3,7 @@
 1. Install System Requirements
 ```sh
 # Install Python 2, Python-dev, gfortran and virtualenv if desired
+sudo apt-get update
 sudo apt-get install python \
   && python-dev \
   && gfortran \
@@ -38,5 +39,9 @@ pip install --no-cache wdmtoolbox
 
 3. Run Jupyter Notebooks
 ```sh
-jupyter-notebook --ip=0.0.0.0  --port=8888 --entry
+jupyter-notebook --ip=0.0.0.0  --port=8888
 ```
+
+4. From a browser, go to localhost:8888?token={token issued on start}
+
+5. Navigate to the HPS2Notebooks directory to explore HSP2.
