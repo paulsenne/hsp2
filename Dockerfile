@@ -1,7 +1,12 @@
 FROM buildpack-deps:zesty
 MAINTAINER Paul Senne <paul.senne@respec.com>
 
-RUN apt-get update && apt-get install --yes --no-install-recommends locales && apt-get purge && apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN apt-get update
+RUN apt-get install --yes --no-install-recommends locales
+RUN apt-get purge
+RUN apt-get clean
+RUN rm -rf /var/lib/apt/lists/*
+
 RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
 ENV LC_ALL en_US.UTF-8
 ENV LANG en_US.UTF-8
@@ -15,7 +20,11 @@ EXPOSE 8888
 RUN useradd -ms /bin/bash -u 1000 ${NB_USER}
 RUN chown -R ${NB_USER} ${HOME}
 
-RUN apt-get update && apt-get install -y python python-dev python-pip virtualenv gfortran unzip && apt-get purge && apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN apt-get update
+RUN apt-get install -y python python-dev python-pip virtualenv gfortran unzip
+RUN apt-get purge
+RUN apt-get clean
+RUN rm -rf /var/lib/apt/lists/*
 
 USER ${NB_USER}
 ENV SHELL /bin/bash
